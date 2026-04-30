@@ -1,8 +1,10 @@
+import { API_BASE_URL } from "../config";
+
 // Get All Jobs For User Logic
 export async function getJobs() {
     const token = localStorage.getItem("token");
 
-    const response = await fetch(`http://localhost:8080/api/jobs`, {
+    const response = await fetch(`${API_BASE_URL}/api/jobs`, {
         headers: {
             "Authorization": `Bearer ${token}`,
         }
@@ -23,7 +25,7 @@ export async function getJobs() {
 export async function createJob(jobData) {
     const token = localStorage.getItem("token");
 
-    const response = await fetch("http://localhost:8080/api/jobs", {
+    const response = await fetch(`${API_BASE_URL}/api/jobs`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -48,7 +50,7 @@ export async function createJob(jobData) {
 export async function deleteJob(id) {
     const token = localStorage.getItem("token");
 
-    const response = await fetch(`http://localhost:8080/api/jobs/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/jobs/${id}`, {
         method: "DELETE",
         headers: {
             "Authorization": `Bearer ${token}`,
@@ -68,7 +70,7 @@ export async function deleteJob(id) {
 export async function updateJob(id, jobData) {
     const token = localStorage.getItem("token");
 
-    const response = await fetch(`http://localhost:8080/api/jobs/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/jobs/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",

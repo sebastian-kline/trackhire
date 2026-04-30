@@ -1,6 +1,8 @@
+import { API_BASE_URL } from "../config";
+
 // Register new user logic
 export async function register(firstName, lastName, email, password) {
-    const response = await fetch(`http://localhost:8080/api/auth/register`, {
+    const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -17,7 +19,7 @@ export async function register(firstName, lastName, email, password) {
 
 // User login logic
 export async function login(email, password) {
-    const response = await fetch(`http://localhost:8080/api/auth/login`, {
+    const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
