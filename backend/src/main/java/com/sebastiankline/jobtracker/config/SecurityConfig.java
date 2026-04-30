@@ -31,7 +31,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(List.of("http://localhost:5173:", "https://trackhire-peach.vercel.app"));
+        config.setAllowedOrigins(List.of("http://localhost:5173:", "https://trackhire-peach.vercel.app", "https://trackhire.app"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         config.setAllowCredentials(true);
