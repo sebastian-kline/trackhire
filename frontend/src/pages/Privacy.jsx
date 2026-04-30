@@ -34,7 +34,7 @@ function Privacy() {
 
                 <h2>6. Contact</h2>
                 <p>
-                    If you have questions about this privacy policy, contact the TrackHire owner or developer.
+                    If you have questions, contact SebastianKline3@gmail.com.
                 </p>
             </div>
         </div>

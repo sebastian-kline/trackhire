@@ -34,7 +34,7 @@ function Terms() {
 
                 <h2>6. Contact</h2>
                 <p>
-                    If you have questions about these terms, contact the TrackHire owner or developer.
+                    If you have any questions contact SebastianKline3@gmail.com.
                 </p>
             </div>
         </div>
