@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {login} from "../services/authService.js";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, useSearchParams} from "react-router-dom";
 import "./Auth.css";
 
 function Login() {
@@ -10,6 +10,8 @@ function Login() {
     const [errors, setErrors] = useState({});
 
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const sessionExpired = searchParams.get("expired") === "true";
 
     // Login logic
     async function handleLogin(e) {
@@ -49,6 +51,12 @@ function Login() {
             <div className="auth-card">
                 <h1>Log in</h1>
                 <p>Welcome back to TrackHire.</p>
+
+                {sessionExpired && (
+                    <p className="error-text">
+                        Your session expired. Please log in again.
+                    </p>
+                )}
 
                 <form onSubmit={handleLogin}>
                     <input

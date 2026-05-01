@@ -122,6 +122,7 @@ function Dashboard() {
                 source: "",
             });
         } catch (error) {
+            if (error.message === "Session expired") return;
             setError("Company and position are required.");
         } finally {
             setIsSubmitting(false);
@@ -150,6 +151,7 @@ function Dashboard() {
             setJobs(updatedJobs); // Replaces old jobs list on the page
 
         } catch (error) {
+            if (error.message === "Session expired") return;
             setError("Could not delete job. Please try again.");
         }
     }
@@ -172,6 +174,7 @@ function Dashboard() {
             setEditingCell(null);
 
         } catch (error) {
+            if (error.message === "Session expired") return;
             setError("Company and position cannot be blank.");
         } finally {
             setSavingJobId(null);

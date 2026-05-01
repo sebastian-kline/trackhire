@@ -9,11 +9,9 @@ export async function getJobs() {
             "Authorization": `Bearer ${token}`,
         }
     });
-    if (response.status === 401) { // When the JWT token expires while the user is still logged in
-        localStorage.removeItem("token");
-        window.location.href="/login";
-        throw new Error("Session expired");
-    }
+
+    handleExpiredSession(response);
+
     if (!response.ok) {
         throw new Error("Failed to fetch jobs");
     }
@@ -33,11 +31,9 @@ export async function createJob(jobData) {
         },
         body: JSON.stringify(jobData),
     })
-    if (response.status === 401) { // When the JWT token expires while the user is still logged in
-        localStorage.removeItem("token");
-        window.location.href="/login";
-        throw new Error("Session expired");
-    }
+
+    handleExpiredSession(response);
+
     if (!response.ok) {
         throw new Error("Failed to create job");
     }
@@ -56,11 +52,9 @@ export async function deleteJob(id) {
             "Authorization": `Bearer ${token}`,
         },
     });
-    if (response.status === 401) { // When the JWT token expires while the user is still logged in
-        localStorage.removeItem("token");
-        window.location.href="/login";
-        throw new Error("Session expired");
-    }
+
+    handleExpiredSession(response);
+
     if (!response.ok) {
         throw new Error("Failed to delete job");
     }
@@ -78,14 +72,22 @@ export async function updateJob(id, jobData) {
         },
         body: JSON.stringify(jobData),
     });
-    if (response.status === 401) { // When the JWT token expires while the user is still logged in
-        localStorage.removeItem("token");
-        window.location.href="/login";
-        throw new Error("Session expired");
-    }
+
+    handleExpiredSession(response);
+
     if (!response.ok) {
         throw new Error("Failed to update job");
     }
 
     return response.json();
+}
+
+// Handle expired sessions
+function handleExpiredSession(response) {
+    if (response.status === 401 || response.status === 403) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("firstName");
+        window.location.href = "/login";
+        throw new Error("Session expired");
+    }
 }

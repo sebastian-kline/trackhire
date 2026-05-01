@@ -7,10 +7,47 @@ import Home from "./pages/Home.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Privacy from "./pages/Privacy.jsx";
 import Terms from "./pages/Terms.jsx";
+import {useEffect} from "react";
+import {jwtDecode} from "jwt-decode";
+
+function SessionWatcher() {
+    useEffect(() => {
+        function checkToken() {
+            const token = localStorage.getItem("token");
+
+            if (!token) return;
+
+            try {
+                const decoded = jwtDecode(token);
+                const isExpired = decoded.exp * 1000 <= Date.now();
+
+                if (isExpired) {
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("firstName");
+                    window.location.href = "/login?expired=true";
+                }
+            } catch {
+                localStorage.removeItem("token");
+                localStorage.removeItem("firstName");
+                window.location.href = "/login?expired=true";
+            }
+        }
+
+        checkToken();
+
+        const interval = setInterval(checkToken, 5000);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    return null;
+}
 
 function App() {
+
     return (
         <BrowserRouter>
+            <SessionWatcher />
             <Navbar />
 
             <Routes>
