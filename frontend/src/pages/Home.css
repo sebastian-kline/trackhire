@@ -3,13 +3,13 @@
 }
 
 .home-container {
-    min-height: 100vh;
+    min-height: calc(100vh - 64px);
     position: relative;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 20px;
+    padding: 32px 20px;
     background:
             radial-gradient(circle at top left, rgba(59, 130, 246, 0.10), transparent 32%),
             #e9edf2;
@@ -282,15 +282,35 @@
 
 @media (max-width: 1000px) {
     .wide-preview-card {
+        width: 100%;
         overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
     }
 
     .preview-dashboard-row {
-        min-width: 1050px;
+        grid-template-columns:
+            120px
+            150px
+            110px
+            130px
+            120px
+            110px
+            120px
+            120px
+            120px
+            160px;
+        min-width: 1260px;
     }
 }
 
 @media (max-width: 700px) {
+    .home-container {
+        align-items: flex-start;
+        padding: 85px 14px 32px;
+        overflow-x: hidden;
+    }
+
     .home-buttons {
         flex-direction: column;
     }
@@ -298,19 +318,32 @@
     .primary-btn,
     .secondary-btn {
         width: 100%;
+        text-align: center;
     }
 
     .preview-row {
-        grid-template-columns: 1fr;
-        gap: 4px;
-        padding: 12px;
+        display: grid;
+        gap: 12px;
+        min-height: 46px;
+        padding: 0 14px;
     }
 
     .preview-row.header {
-        display: none;
+        display: grid;
     }
 
     .preview-dashboard-row {
-        min-width: 1050px;
+        grid-template-columns:
+            120px
+            150px
+            110px
+            130px
+            120px
+            110px
+            120px
+            120px
+            120px
+            160px;
+        min-width: 1260px;
     }
 }
