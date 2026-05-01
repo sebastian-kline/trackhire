@@ -279,8 +279,11 @@ form input[name="position"]:focus {
     border-bottom: 1px solid var(--border);
     user-select: none;
     cursor: pointer;
+
+    white-space: nowrap;
+    overflow-wrap: normal;
+    word-break: normal;
 }
-.jobs-table th,
 .jobs-table td {
     overflow-wrap: anywhere;
     word-break: break-word;
@@ -315,6 +318,8 @@ form input[name="position"]:focus {
 }
 
 .sort-icon {
+    display: inline-block;
+    white-space: nowrap;
     margin-left: 6px;
     font-size: 12px;
     color: #9ca3af;
@@ -517,17 +522,24 @@ form input[name="position"]:focus {
 .new-job-row textarea,
 .new-job-row select {
     width: 100%;
-    min-height: 34px;
-    height: 34px;
-    padding: 6px 10px;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 30px;
+    height: 30px;
+    padding: 4px 6px;
     border: 1px dashed var(--border);
     border-radius: 8px;
     background: transparent;
     color: #374151;
     box-shadow: none;
-    font-size: 14px;
+    font-size: 13px;
     font-family: inherit;
     resize: none;
+    overflow: hidden;
+}
+
+.new-job-row td {
+    min-width: 0;
     overflow: hidden;
 }
 
@@ -570,8 +582,6 @@ form input[name="position"]:focus {
     background: #ffffff;
     border-color: #bfdbfe;
     box-shadow: 0 0 0 3px var(--blue-soft);
-    padding-left: 8px;
-    padding-right: 8px;
 }
 
 .new-job-row select {

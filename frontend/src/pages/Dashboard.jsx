@@ -189,7 +189,7 @@ function Dashboard() {
                 job.location?.toLowerCase().includes(search) ||
                 job.dateApplied?.toLowerCase().includes(search) ||
                 job.salaryExpectation?.toLowerCase().includes(search) ||
-                job.industry?.toLowerCase().includes(search)
+                job.industry?.toLowerCase().includes(search) ||
                 job.contactPerson?.toLowerCase().includes(search) ||
                 job.source?.toLowerCase().includes(search) ||
                 job.notes?.toLowerCase().includes(search);
@@ -364,7 +364,7 @@ function Dashboard() {
                             className={hasUserSorted && sortConfig.key === "salaryExpectation" ? "sorted-column" : ""}
                             onClick={() => handleSort("salaryExpectation")}
                         >
-                            Salary Expectation <span className="sort-icon">{getSortIcon("salaryExpectation")}</span>
+                            Salary <span className="sort-icon">{getSortIcon("salaryExpectation")}</span>
                         </th>
                         <th
                             className={hasUserSorted && sortConfig.key === "industry" ? "sorted-column" : ""}
@@ -373,10 +373,10 @@ function Dashboard() {
                             Industry <span className="sort-icon">{getSortIcon("industry")}</span>
                         </th>
                         <th
-                            className={hasUserSorted && sortConfig.key === "contact" ? "sorted-column" : ""}
-                            onClick={() => handleSort("contact")}
+                            className={hasUserSorted && sortConfig.key === "contactPerson" ? "sorted-column" : ""}
+                            onClick={() => handleSort("contactPerson")}
                         >
-                            Contact <span className="sort-icon">{getSortIcon("contact")}</span>
+                            Contact <span className="sort-icon">{getSortIcon("contactPerson")}</span>
                         </th>
                         <th
                             className={hasUserSorted && sortConfig.key === "source" ? "sorted-column" : ""}
