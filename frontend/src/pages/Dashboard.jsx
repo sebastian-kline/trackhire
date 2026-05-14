@@ -29,7 +29,7 @@ function Dashboard() {
     // Filter and Search
     const [searchTerm, setSearchTerm] = useState("");
     const [statusFilter, setStatusFilter] = useState("ALL");
-    const [sortConfig, setSortConfig] = useState({key: "dateApplied", direction: "asc",});
+    const [sortConfig, setSortConfig] = useState({key: "", direction: "asc",});
     const [hasUserSorted, setHasUserSorted] = useState(false);
 
     useEffect(() => { // When the dashboard first appears, call the backend, get the jobs, and save them into jobs
@@ -275,10 +275,9 @@ function Dashboard() {
         setIsSubmitting(true);
 
         try {
-            await createJob(formData);
+            const newJob = await createJob(formData);
 
-            const updatedJobs = await getJobs();
-            setJobs(updatedJobs);
+            setJobs((prevJobs) => [newJob, ...prevJobs]);
 
             setFormData({
                 company: "",
